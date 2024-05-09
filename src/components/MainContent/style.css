@@ -78,7 +78,6 @@
   gap: 12px;
   border-radius: 8px;
   border: 1px solid #ebebeb;
-  opacity: 0px;
   display: flex;
   flex-direction: column;
 }
@@ -108,7 +107,6 @@
   gap: 4px;
   display: flex;
   flex-direction: column;
-  opacity: 0px;
 }
 
 .current-version-label {
@@ -138,7 +136,6 @@
   flex-direction: row;
   align-items: center;
   gap: 8px;
-  opacity: 0px;
 }
 
 .system-matrics {
@@ -179,7 +176,6 @@
   align-items: center;
   padding: 4px;
   gap: 10px;
-  opacity: 0px;
 }
 
 .time-stamp {
@@ -313,7 +309,6 @@
   height: 36px;
   gap: 16px;
   align-items: center;
-  opacity: 0px;
 }
 
 .drawer-input-text {
@@ -355,7 +350,6 @@
   gap: 12px;
   border-radius: 8px;
   border: 1px;
-  opacity: 0px;
   border: 1px solid #ebebeb;
   display: flex;
   justify-content: space-between;
