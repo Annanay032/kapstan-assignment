@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import "../style.css";
 import { AddIcon } from "../../../Icons/add";
 import { DownloadIcon } from "../../../Icons/download";
 import Drawer from "@mui/material/Drawer";
@@ -8,6 +7,7 @@ import { CloseIcon } from "../../../Icons/close";
 import { DeleteIcon } from "../../../Icons/delete";
 import DragAndDropUpload from "../../Base/upload";
 import { initialEvnAddData } from "../constants";
+import "../style.css";
 
 function EnvSection() {
   const [openDrawer, setOpenDrawer] = useState("");

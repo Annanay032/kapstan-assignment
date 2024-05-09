@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../style.css";
 import { SuccessIcon } from "../../../Icons/success";
 import CancelIcon from "@mui/icons-material/Cancel";
 
@@ -9,6 +8,7 @@ import { getTimeDiffFromTimeStamp } from "../../../globalUtils";
 import GraphSection from "./graphSection";
 import BaseTabs from "../../Base/tabs";
 import EventHistory from "./eventHistory";
+import "../style.css";
 
 const StyleButton = styled(Button)({
   width: "96px",
