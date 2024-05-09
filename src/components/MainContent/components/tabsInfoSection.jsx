@@ -19,7 +19,7 @@ const StyleButton = styled(Button)({
   color: "#595959",
 });
 
-function TabsInfoSection({ selectedApplicationData, applicationsData }) {
+const TabsInfoSection = ({ selectedApplicationData, applicationsData }) => {
   const tabOptions = [
     { key: "cpu", label: "CPU", yAxis: "CPU Utilization (%)" },
     { key: "memory", label: "Memory", yAxis: "Memory" },
