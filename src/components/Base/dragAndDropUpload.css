@@ -1,0 +1,55 @@
+.drop-area {
+  height: 80px;
+  border: 1px dashed #bdbdbd;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 200px;
+  font-size: 20px;
+  color: #999;
+  margin: 20px auto;
+  background-color: #f8f8f8;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  /* height: Hug (80px)px; */
+  padding: 24px 8px 12px 8px;
+  gap: 16px;
+  border-radius: 4px;
+}
+.drop-area.dragging {
+  border-color: #66c;
+  color: #66c;
+}
+
+.drag-div {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  margin: 36px;
+  gap: 24px;
+  border-radius: 8px;
+  border: 1px solid #ebebeb;
+}
+
+.upload-text {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #333333;
+}
+
+.upload-info {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #595959;
+  margin-top: -36px;
+  margin-left: 4px;
+}
