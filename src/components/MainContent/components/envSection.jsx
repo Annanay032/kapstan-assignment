@@ -133,7 +133,7 @@ function EnvSection() {
 
   const renderDragAndDrop = useMemo(() => {
     const handleUploadSubmit = (data) => {
-      setEnvData(data);
+      setEnvData({...envData ,...data});
       setOpenDrawer("");
     };
     return (
@@ -149,7 +149,7 @@ function EnvSection() {
         ;
       </div>
     );
-  }, []);
+  }, [envData]);
 
   const deleteEnvVariable = useCallback(
     (key) => {
