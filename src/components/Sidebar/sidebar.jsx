@@ -37,7 +37,7 @@ const Sidebar = () => {
                   >
                     {cat.icon}
                     {!collapsed && <span>{cat.title}</span>}
-                    {cat.postFixIcon}
+                    {!collapsed && cat.postFixIcon}
                   </div>
                 </div>
                 {cat.hasDivider && (
