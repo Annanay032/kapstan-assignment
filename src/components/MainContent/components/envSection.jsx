@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import "../style.css";
 import { AddIcon } from "../../../Icons/add";
@@ -11,26 +11,32 @@ import { initialEvnAddData } from "../constants";
 
 function EnvSection() {
   const [openDrawer, setOpenDrawer] = useState("");
-  const [envData, setEnvData] = useState({});
-  const [envAddData, setEnvAddData] = useState(initialEvnAddData);
+  const [envData, setEnvData] = useState(
+    JSON.parse(sessionStorage.getItem("envVariables")) || {}
+  );
+  const [envAddData, setEnvAddData] = useState(initialEvnAddData());
+
+  useEffect(() => {
+    sessionStorage.setItem("envVariables", JSON.stringify(envData));
+  }, [envData]);
 
   const renderDrawerData = useMemo(() => {
     const addNewEntry = () => {
       const currentDate = new Date(); // Create a new Date object with the current date and time
       const currentTimeStamp = currentDate.getTime();
-      const tempObj = { ...envAddData };
+      const tempObj = JSON.parse(JSON.stringify(envAddData));
       tempObj[currentTimeStamp] = { name: "", value: "" };
       setEnvAddData(tempObj);
     };
 
     const deleteEntry = (key) => {
-      const tempObj = { ...envAddData };
+      const tempObj = JSON.parse(JSON.stringify(envAddData));
       delete tempObj[key];
       setEnvAddData(tempObj);
     };
 
     const handleValue = (e, key, type) => {
-      const tempObj = { ...envAddData };
+      const tempObj = JSON.parse(JSON.stringify(envAddData));
       tempObj[key][type] = e.target.value;
       setEnvAddData(tempObj);
     };
@@ -40,11 +46,13 @@ function EnvSection() {
 
       Object.entries(envAddData)?.forEach(([key, data]) => {
         if (data.name && data.value) {
-          nonEmptyEnvAddData[key] = data;
+          const currentDate = new Date(); // Create a new Date object with the current date and time
+          const currentTimeStamp = currentDate.getTime();
+          nonEmptyEnvAddData[key + currentTimeStamp] = data;
         }
       });
       setEnvData({ ...envData, ...nonEmptyEnvAddData });
-      setEnvAddData(initialEvnAddData);
+      setEnvAddData(initialEvnAddData());
       setOpenDrawer("");
     };
 
@@ -121,7 +129,7 @@ function EnvSection() {
         </div>
       );
     }
-  }, [envAddData, envData, initialEvnAddData, openDrawer]);
+  }, [envAddData, envData, openDrawer]);
 
   const renderDragAndDrop = useMemo(() => {
     const handleUploadSubmit = (data) => {
@@ -143,17 +151,20 @@ function EnvSection() {
     );
   }, []);
 
-  const deleteEnvVariable = (key) => {
-    const tempObj = { ...envData };
-    delete tempObj[key];
-    setEnvData(tempObj);
-  };
+  const deleteEnvVariable = useCallback(
+    (key) => {
+      const tempObj = JSON.parse(JSON.stringify(envData));
+      delete tempObj[key];
+      setEnvData(tempObj);
+    },
+    [envData]
+  );
 
   return (
     <div className="info-section">
       <div
         className="service-info"
-        style={{ minHeight: "363px", height: "auto" }}
+        style={{ minHeight: "363px", height: "70vh", overflowY: 'auto' }}
       >
         <div
           className="service-info-label"
@@ -181,7 +192,7 @@ function EnvSection() {
           Object.entries(envData)?.map(
             ([key, data]) =>
               data?.name && (
-                <div className="env-var-details" style={{ width: "96%" }}>
+                <div className="env-var-details" >
                   <span style={{ fontWeight: 700, color: "#333333" }}>
                     {data.name}{" "}
                   </span>

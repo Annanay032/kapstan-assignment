@@ -1,8 +1,11 @@
 .navbar-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: #f8f8f8;
   height: 65px;
-  padding: 16px 32px 16px 32px;
-  opacity: 0px;
+  padding: 8px 32px 8px 32px;
   border-bottom: 1px solid #ebebeb;
 }
 
@@ -346,7 +349,7 @@
 }
 
 .env-var-details {
-  width: 474px;
+  width: 574px;
   height: 36px;
   padding: 12px;
   gap: 12px;
@@ -365,12 +368,32 @@
   text-align: left;
 }
 
-
 .no-env-val {
   font-family: Inter;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: -0.01em;
   text-align: left;
-  color:#595959;
+  color: #595959;
+}
+
+.user {
+  width: 162px;
+  height: 40px;
+  display: flex;
+  gap: 16px;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #333333;
 }

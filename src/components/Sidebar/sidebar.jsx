@@ -6,6 +6,7 @@ import { sideBarMenu } from "./utils";
 
 const Sidebar = () => {
   const [collapsed, setCollapse] = useState(false);
+  const [selectedMenu, setSelectedMenu] = useState("Applications");
   const renderMenu = useMemo(() => {
     return (
       <div className={styles.renderList}>
@@ -19,10 +20,25 @@ const Sidebar = () => {
                 <div
                   className={styles.cat}
                   style={cat.bottom ? { marginTop: "100%" } : {}}
-                  onClick={() => cat.allowCollapse && setCollapse(prev => !prev)}
+                  onClick={() =>
+                    cat.allowCollapse && setCollapse((prev) => !prev)
+                  }
                 >
-                  {cat.icon}
-                  {!collapsed && <span>{cat.title}</span>}
+                  <div
+                    className={styles.category}
+                    style={
+                      cat.title === selectedMenu
+                        ? {
+                            backgroundColor: "#4D1B95",
+                          }
+                        : {}
+                    }
+                    onClick={() => setSelectedMenu(cat.title)}
+                  >
+                    {cat.icon}
+                    {!collapsed && <span>{cat.title}</span>}
+                    {cat.postFixIcon}
+                  </div>
                 </div>
                 {cat.hasDivider && (
                   <Divider
@@ -38,7 +54,7 @@ const Sidebar = () => {
         ))}
       </div>
     );
-  }, [collapsed]);
+  }, [collapsed, selectedMenu]);
 
   return (
     <div className={collapsed ? styles.sidebarclosed : styles.sidebaropen}>

@@ -5,6 +5,8 @@ import "./style.css";
 import { tabOptions } from "./utils";
 import TabsInfoSection from "./components/tabsInfoSection";
 import EnvSection from "./components/envSection";
+import UserInfo from "./components/userInfo";
+
 
 const MainContent = () => {
   const [applicationsData, setApplicationsData] = useState([]);
@@ -34,6 +36,9 @@ const MainContent = () => {
           selectedApplicationsId={selectedApplicationsId}
           setSelectedApplicationsId={setSelectedApplicationsId}
         />
+        <div className="user">
+          <UserInfo/>
+        </div>
       </div>
       <div className="info-container">
         <TabSection
@@ -41,16 +46,18 @@ const MainContent = () => {
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
         />
-        {selectedTab === 'overview' && 
-        <TabsInfoSection
-          selectedApplicationData={selectedApplicationData}
-          applicationsData={applicationsData}
-        />}
-        {selectedTab === 'envVariable' && 
-        <EnvSection
-          selectedApplicationData={selectedApplicationData}
-          applicationsData={applicationsData}
-        />}
+        {selectedTab === "overview" && (
+          <TabsInfoSection
+            selectedApplicationData={selectedApplicationData}
+            applicationsData={applicationsData}
+          />
+        )}
+        {selectedTab === "envVariable" && (
+          <EnvSection
+            selectedApplicationData={selectedApplicationData}
+            applicationsData={applicationsData}
+          />
+        )}
       </div>
     </div>
   );

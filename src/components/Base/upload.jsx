@@ -95,7 +95,7 @@ function DragAndDropUpload({ onSubmit, handleCancel }) {
   };
 
   const deleteEnvVariable = (key) => {
-    const tempObj = { ...uploadData };
+    const tempObj = JSON.parse(JSON.stringify(uploadData));
     delete tempObj[key];
     setUploadData(tempObj);
   };
