@@ -60,12 +60,12 @@ const Sidebar = () => {
     <div className={collapsed ? styles.sidebarclosed : styles.sidebaropen}>
       <div>
         <div
-          className={styles.kapstanlogo}
+          className={styles.mylogo}
           onClick={() => setCollapse((prev) => !prev)}
         >
           <Logo />{" "}
           {!collapsed && (
-            <span className={styles.kapstanlogoname}>KAPSTAN</span>
+            <span className={styles.mylogoname}>Deployer</span>
           )}
         </div>
         <Divider className={styles.divider}></Divider>

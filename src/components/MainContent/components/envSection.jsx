@@ -43,6 +43,7 @@ function EnvSection() {
 
     const submitEntry = () => {
       const nonEmptyEnvAddData = {};
+      const lastData = {};
 
       Object.entries(envAddData)?.forEach(([key, data]) => {
         if (data.name && data.value) {
@@ -51,7 +52,19 @@ function EnvSection() {
           nonEmptyEnvAddData[key + currentTimeStamp] = data;
         }
       });
-      setEnvData({ ...envData, ...nonEmptyEnvAddData });
+
+      Object.entries(nonEmptyEnvAddData).forEach(([key, data]) => {
+        Object.entries(envData).forEach(([keyM, dataM]) => {
+          if (keyM !== key) {
+            lastData[keyM] = dataM[keyM];
+          }
+        });
+
+        lastData[key] = data[key];
+      });
+
+      console.log({lastData})
+      setEnvData({ ...lastData});
       setEnvAddData(initialEvnAddData());
       setOpenDrawer("");
     };
@@ -133,7 +146,20 @@ function EnvSection() {
 
   const renderDragAndDrop = useMemo(() => {
     const handleUploadSubmit = (data) => {
-      setEnvData({...envData ,...data});
+const lastData = {}
+
+      Object.entries(data).forEach(([key, data]) => {
+        Object.entries(envData).forEach(([keyM, dataM]) => {
+          if (keyM !== key) {
+            lastData[keyM] = dataM[keyM];
+          }
+        });
+
+        lastData[key] = data[key];
+      });
+
+
+      setEnvData({ ...lastData });
       setOpenDrawer("");
     };
     return (
@@ -164,7 +190,7 @@ function EnvSection() {
     <div className="info-section">
       <div
         className="service-info"
-        style={{ minHeight: "363px", height: "70vh", overflowY: 'auto' }}
+        style={{ minHeight: "363px", height: "70vh", overflowY: "auto" }}
       >
         <div
           className="service-info-label"
@@ -192,7 +218,7 @@ function EnvSection() {
           Object.entries(envData)?.map(
             ([key, data]) =>
               data?.name && (
-                <div className="env-var-details" >
+                <div className="env-var-details">
                   <span style={{ fontWeight: 700, color: "#333333" }}>
                     {data.name}{" "}
                   </span>
